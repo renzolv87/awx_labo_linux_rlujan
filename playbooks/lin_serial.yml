@@ -1,0 +1,11 @@
+---
+- hosts: "all"
+  become: yes
+  serial:
+  - 50% 
+  max_fail_percentage: "{{ porcentaje_fallo}}"
+  tasks:
+  - name: get files
+    uri:
+      url: "http://{{ inventory_hostname }}"
+

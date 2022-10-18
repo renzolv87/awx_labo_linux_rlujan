@@ -23,4 +23,4 @@
     package:
       name: httpd
       state: absent
-    tags: [never, uninstall]
+    tags: [ never, uninstall ]

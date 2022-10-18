@@ -1,0 +1,28 @@
+---
+- hosts: "{{ hosts }}"
+  become: true
+  handlers:
+  - name: reinicio el servicio
+    service:
+      name: httpd
+      state: restarted  
+    listen: "reinicia apache"
+  tasks:
+  - name: creo directo /opt/www
+    file:
+      path: /opt/www
+      state: directory
+  - name: cambio el DocumentRoot
+    replace:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^DocumentRoot.*$'
+      replace: 'DocumentRoot "/opt/www"'
+      backup: yes
+    notify: "reinicia apache"
+  - name: cambio el DocumentRoot
+    replace:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^DocumentRoot.*$'
+      replace: 'DocumentRoot "/var/www/html"'
+      backup: yes
+    notify: "reinicia apache"
