@@ -1,0 +1,25 @@
+---
+- hosts: "{{ hosts }}"
+  become: true
+  tasks:
+  - name: creamos grupos
+    group:
+      name: "{{ item }}"
+    with_items:
+    - web
+    - bd
+
+  - name: creamos varios usuarios pepe
+    user:
+      name: "{{ item.username }}"
+      group: "{{ item.groupname }}"
+      shell: "/bin/bash"
+      comment: "usuario creado automaticamente por ansible"
+      state: present
+    with_items:
+    - { username: 'pepe', groupname: 'web'}
+    - { username: 'juan', groupname: 'web'}
+    - { username: 'pedro', groupname: 'bd'}
+    - { username: 'maria', groupname: 'web'}
+
+  
