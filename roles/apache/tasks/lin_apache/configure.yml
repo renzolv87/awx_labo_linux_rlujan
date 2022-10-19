@@ -1,0 +1,13 @@
+---
+- name: creamos pagina de bienvenida
+  copy:
+    src: index.html
+    dest: /var/www/html/index.html
+  notify: "reinicio apache"
+- name: desplegamos template
+  template:
+    src: apache_template.j2
+    dest: /var/tmp/ficher_template
+- name: contenido variable nombre
+  debug:
+    msg: "nombre: {{ nombre }}"

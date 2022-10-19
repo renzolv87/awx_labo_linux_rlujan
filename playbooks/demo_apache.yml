@@ -1,0 +1,8 @@
+---
+- hosts: "{{ hosts }}"
+  vars: 
+    nombre: demo_apache
+  become: true
+  roles:
+  - apache
+  

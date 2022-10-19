@@ -1,0 +1,7 @@
+---
+- name: instalamos apache
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ apache_packages }}"
+  

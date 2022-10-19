@@ -1,0 +1,14 @@
+---
+- hosts: "{{ hosts }}"
+  become: true
+  vars:
+    nombre: renzo
+  tasks:
+  - name: desplegamos template
+    template:
+      src: /tools/git_repositories/ansible_rlujan/linux/linux_file.conf.j2
+      dest: /var/tmp/conf.conf
+      owner: root
+      group: root
+      mode: '0644'
+    

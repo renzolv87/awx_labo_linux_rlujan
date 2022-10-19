@@ -1,0 +1,10 @@
+---
+# tasks file for apache
+- import_tasks: lin_apache/install.yml
+  tags: install
+
+- import_tasks: lin_apache/configure.yml
+  tags: config
+
+- import_tasks: lin_apache/uninstall.yml
+  tags: [never, uninstall]
