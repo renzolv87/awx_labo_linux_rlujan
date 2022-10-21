@@ -1,0 +1,18 @@
+---
+- hosts: "{{ hosts }}"
+  become: true
+  handlers:
+  - name: reload sshd 
+    service:
+      name: sshd 
+      state: reloaded
+    listen: "reload sshd"
+  tasks:
+  - name: cambio PermitRootLogin a no
+    replace:
+      path: /etc/ssh/sshd_config
+      regexp: '^PermitRootLogin yes'
+      replace: 'PermitRootLogin no'
+      backup: yes
+    notify: "reload sshd"
+
